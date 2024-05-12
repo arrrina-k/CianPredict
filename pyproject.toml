@@ -1,0 +1,39 @@
+[tool.poetry]
+name = "avitoprediction"
+version = "0.1.0"
+description = "House price prediction project"
+authors = ["deniskazhekin <deniskazhekin@yandex.ru>"]
+license = "MIT"
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.11"
+pre-commit = "^3.7.0"
+jupyter = "^1.0.0"
+streamlit = "^1.34.0"
+cianparser = "^1.0.4"
+yandex-geocoder = "^3.0.1"
+st-pages = "^0.4.5"
+matplotlib = "^3.8.4"
+seaborn = "^0.13.2"
+pydeck = "^0.9.1"
+dython = "^0.7.5"
+scipy = "^1.13.0"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.black]
+line-length = 119
+target-version = ['py311']
+include = '\.pyi?$'
+
+[tool.isort]
+profile = "black"
+line_length = 119
+multi_line_output = 3
+include_trailing_comma = true
+use_parentheses = true
+ensure_newline_before_comments = true

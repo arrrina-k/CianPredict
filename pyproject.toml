@@ -1,8 +1,8 @@
 [tool.poetry]
-name = "avitoprediction"
+name = "cianprediction"
 version = "0.1.0"
 description = "House price prediction project"
-authors = ["deniskazhekin <deniskazhekin@yandex.ru>"]
+authors = ["arrrina-k <krivenko.arinka@yandex.ru>"]
 license = "MIT"
 readme = "README.md"
 

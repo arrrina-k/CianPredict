@@ -1,3 +1,3 @@
 # CianPredict
 # Link to our Streamlit EDA (in process)👇
-[Clique](https://cianpredict-djezjgrq2se8qwq2yupeqe.streamlit.app/)
+[Click here](https://cianpredict-djezjgrq2se8qwq2yupeqe.streamlit.app/)

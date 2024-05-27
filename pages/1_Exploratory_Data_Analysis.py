@@ -2,6 +2,7 @@ import altair as alt
 import matplotlib.pyplot as plt
 import pandas as pd
 import pydeck as pdk
+import scipy.stats as stats
 import streamlit as st
 from dython.nominal import associations
 
@@ -141,9 +142,81 @@ if __name__ == "__main__":
         " Also need to be said, that there is a huge difference between authors of advertisments."
         " All these features except underground and district, has a significant impact 👉 we need to perform additional hypotesis estimation of them on independence for price."
     )
+    st.divider()
+    st.subheader("(We considered to use ANOVA tests because we want to compare the means of more than two groups)")
+    underground_groups = [
+        data[data["underground"] == station]["price"].values
+        for station in data["underground"].unique()
+        if len(data[data["underground"] == station]) > 1
+    ]
+    f_val, p_val = stats.f_oneway(*underground_groups)
     st.subheader(
-        "Also, we need to check the hypotesis that official_representative author mean price higher than representative developer mean_price"
+        "Hypothesis Test with **\u03B1** = 0.05 which will estimate the significance of the impact of underground station area on price👇"
     )
+    st.markdown(
+        "**H0:** There is no difference in the mean property prices across different underground station areas."
+    )
+    st.markdown(
+        "**H1:**  At least one underground station area has a mean property price that is different from the others."
+    )
+    st.subheader("ANOVA Test Results")
+    st.write("F-value: {:.2f}".format(f_val))
+    st.write("p-value: {:.2f}".format(p_val))
+    if p_val < 0.05:
+        st.write(
+            "Conclusion: **p_value < \u03B1** which means that we reject the null hypothesis (H0). There are significant differences in prices across different underground station areas."
+        )
+    else:
+        st.write(
+            "Conclusion: **p_value > \u03B1** which means that we fail to reject the null hypothesis (H0). There are no significant differences in prices across different underground station areas."
+        )
+    st.divider()
+    street_groups = [
+        data[data["street"] == street]["price"].values
+        for street in data["street"].unique()
+        if len(data[data["street"] == street]) > 1
+    ]
+    f_val, p_val = stats.f_oneway(*street_groups)
+    st.subheader(
+        "Now we should conduct the same statistical test which will estimate the significance of the impact of streets on price👇"
+    )
+    st.markdown("**H0:** There is no difference in the mean prices across different streets.")
+    st.markdown("**H1:** At least one street has a mean price that is different from the others.")
+    st.subheader("ANOVA Test Results")
+    st.write("F-value: {:.2f}".format(f_val))
+    st.write("p-value: {:.2f}".format(p_val))
+    if p_val < 0.05:
+        st.write(
+            "Conclusion: **p_value < \u03B1** which means that we reject the null hypothesis (H0). There are significant differences in prices across different streets."
+        )
+    else:
+        st.write(
+            "Conclusion: **p_value > \u03B1** which means that we fail to reject the null hypothesis (H0). There are no significant differences in prices across different streets."
+        )
+    st.divider()
+    st.subheader(
+        "Also, we need to check the hypothesis that official_representative author mean price higher than representative developer mean_price. It'll be better to use t-test for this case. (\u03B1 remains the same)"
+    )
+    official_representative_prices = data[data["author_type"] == "Агент по недвижимости"]["price"]
+    developer_prices = data[data["author_type"] == "Застройщик"]["price"]
+    t_stat, p_value = stats.ttest_ind(
+        official_representative_prices, developer_prices, alternative="greater", equal_var=False
+    )
+    st.markdown(
+        "**H0:** There is no difference in the mean prices between listings by official representatives and developers."
+    )
+    st.markdown("**H1:**  The mean price of listings by official_representative is higher than those by developer.")
+    st.subheader("ANOVA Test Results")
+    st.write("t-statistic: {:.2f}".format(t_stat))
+    st.write("p-value: {:.2f}".format(p_val))
+    if p_val < 0.05:
+        st.write(
+            "Conclusion: **p_value < \u03B1** which means that we reject the null hypothesis (H0). The mean price of listings by official_representative is higher than those by developers."
+        )
+    else:
+        st.write(
+            "Conclusion: **p_value > \u03B1** which means that we fail to reject the null hypothesis (H0). There is no significant difference in mean property prices between official representatives and developers."
+        )
 
     st.divider()
     st.subheader("Price box plot section")

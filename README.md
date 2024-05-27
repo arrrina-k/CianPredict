@@ -8,8 +8,8 @@
 - data (on different stages of our project we were addicted to use different type of data preprocess)
 - notebooks (consists of notebooks we were using)
 - pages (all pages for streamlit_app indeed)
-- src (in this directory we've implemented all of our work via python classes to allow the user to repeat/to check all stages of the project) 
+- src (in this directory we've implemented all of our work via python classes to allow the user to repeat/to check all stages of the project)
 - weights (fitted catboost regressor model inside)
 
 As you could see we used poetry. That was necessary to install all dependencies for making streamlit report
-️ 
+️

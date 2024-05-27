@@ -14,6 +14,9 @@ if __name__ == "__main__":
     st.header("Cian Flat Cost Prediction Project 🦜")
     st.divider()
     st.subheader("👈 In the tab panel you can see several options to click.")
+    st.divider()
     st.subheader(
-        "To check out the EDA and try to make a prediction with machine learning model, please, follow the according tab."
+        "To check out the EDA and try to make a prediction with machine learning models, please, follow the according tab."
     )
+    st.divider()
+    st.subheader("❗ Note, that all the graphics are interactive, you can round the data and zoom in/out.")

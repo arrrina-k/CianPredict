@@ -1,5 +1,5 @@
 [tool.poetry]
-name = "cianprediction"
+name = "CianPredict"
 version = "0.1.0"
 description = "House price prediction project"
 authors = ["arrrina-k <krivenko.arinka@yandex.ru>"]
@@ -19,6 +19,7 @@ seaborn = "^0.13.2"
 pydeck = "^0.9.1"
 dython = "^0.7.5"
 scipy = "^1.13.0"
+catboost = "^1.2.5"
 
 
 [build-system]
